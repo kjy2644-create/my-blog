@@ -1,0 +1,17 @@
+<h1 class="page-title">최근 글</h1>
+{{#if posts}}
+<ul class="post-list">
+  {{#each posts}}
+  <li>
+    <article class="post-card">
+      <h2><a href="{{url}}">{{title}}</a></h2>
+      <p class="post-meta"><time datetime="{{date}}">{{displayDate}}</time></p>
+      {{#if description}}<p class="post-description">{{description}}</p>{{/if}}
+      {{#if tags}}<ul class="tags" aria-label="태그">{{#each tags}}<li>#{{this}}</li>{{/each}}</ul>{{/if}}
+    </article>
+  </li>
+  {{/each}}
+</ul>
+{{else}}
+<p>아직 글이 없습니다.</p>
+{{/if}}

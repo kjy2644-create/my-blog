@@ -1,0 +1,399 @@
+:root {
+  color-scheme: light;
+
+  --color-bg: #ffffff;
+  --color-surface: #f6f7f8;
+  --color-text: #1f2328;
+  --color-muted: #5f6771;
+  --color-border: #e1e4e8;
+  --color-accent: #1f5fbf;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --text-base: 17px;
+  --text-sm: 0.875rem;
+  --text-code: 0.875em;
+  --text-h1: 1.875rem;
+  --text-h2: 1.4rem;
+  --text-h3: 1.175rem;
+  --text-h4: 1rem;
+  --leading-body: 1.75;
+  --leading-tight: 1.35;
+  --leading-code: 1.6;
+  --code-padding: 0.1em 0.35em;
+  --weight-bold: 700;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --measure: 68ch;
+  --radius: 6px;
+  --border-width: 1px;
+  --quote-width: 3px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --color-bg: #15171a;
+    --color-surface: #202329;
+    --color-text: #e6e8eb;
+    --color-muted: #a0a7b1;
+    --color-border: #33373e;
+    --color-accent: #7cb0ff;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #15171a;
+  --color-surface: #202329;
+  --color-text: #e6e8eb;
+  --color-muted: #a0a7b1;
+  --color-border: #33373e;
+  --color-accent: #7cb0ff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--text-base);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: var(--leading-body);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--color-accent);
+  text-underline-offset: var(--space-1);
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-accent);
+  outline-offset: var(--focus-offset);
+}
+
+main:focus {
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--space-4));
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+main.container {
+  flex: 1;
+  padding-block: var(--space-6) var(--space-7);
+}
+
+/* 머리글과 바닥글 */
+
+.site-header {
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  max-width: calc(var(--measure) + 2 * var(--space-4));
+  margin-inline: auto;
+  padding: var(--space-3) var(--space-4);
+}
+
+.site-title {
+  color: var(--color-text);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+.theme-toggle {
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-3);
+  background: transparent;
+  color: var(--color-muted);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--color-text);
+}
+
+.site-footer {
+  border-top: var(--border-width) solid var(--color-border);
+  color: var(--color-muted);
+}
+
+.site-footer p {
+  margin-block: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+/* 글 목록 */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--leading-tight);
+}
+
+.page-title {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-h1);
+}
+
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-list > li {
+  padding-block: var(--space-5);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.post-card h2 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-h2);
+}
+
+.post-card h2 a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.post-card h2 a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.post-meta {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.post-description {
+  margin: var(--space-2) 0 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  list-style: none;
+}
+
+/* 글 상세 */
+
+.post-header {
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.post-header h1 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-h1);
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose h2 {
+  margin: var(--space-7) 0 var(--space-3);
+  font-size: var(--text-h2);
+}
+
+.prose h3 {
+  margin: var(--space-6) 0 var(--space-2);
+  font-size: var(--text-h3);
+}
+
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin: var(--space-5) 0 var(--space-2);
+  font-size: var(--text-h4);
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose .table-wrap {
+  margin-block: 0 var(--space-5);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-5);
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-block: var(--space-1) 0;
+}
+
+.prose li + li {
+  margin-top: var(--space-1);
+}
+
+.prose li > p {
+  margin-bottom: var(--space-2);
+}
+
+.prose blockquote {
+  margin-inline: 0;
+  padding-left: var(--space-4);
+  border-left: var(--quote-width) solid var(--color-border);
+  color: var(--color-muted);
+}
+
+.prose blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.prose hr {
+  margin-block: var(--space-7);
+  border: 0;
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+:not(pre) > code {
+  padding: var(--code-padding);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  font-size: var(--text-code);
+}
+
+pre {
+  overflow-x: auto;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  line-height: var(--leading-code);
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+pre code {
+  white-space: pre;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+th,
+td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border-width) solid var(--color-border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  border-bottom-color: var(--color-muted);
+}
+
+th.align-center,
+td.align-center {
+  text-align: center;
+}
+
+th.align-right,
+td.align-right {
+  text-align: right;
+}
+
+.post-nav {
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --text-base: 18px;
+    --text-h1: 2.125rem;
+  }
+}

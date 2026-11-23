@@ -1,0 +1,13 @@
+<article>
+  <header class="post-header">
+    <h1>{{post.title}}</h1>
+    <p class="post-meta"><time datetime="{{post.date}}">{{post.displayDate}}</time></p>
+    {{#if post.tags}}<ul class="tags" aria-label="태그">{{#each post.tags}}<li>#{{this}}</li>{{/each}}</ul>{{/if}}
+  </header>
+  <div class="prose">
+{{{post.content}}}
+  </div>
+</article>
+<nav class="post-nav" aria-label="글 이동">
+  <a href="{{site.basePath}}/">← 목록으로</a>
+</nav>
